@@ -1,5 +1,9 @@
-const express = require('express');
 const dotenv = require('dotenv');
+
+// Load env variables
+dotenv.config({ path: './config/config.env' });
+
+const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -10,11 +14,8 @@ require('./models/User');
 require('./models/Blog');
 require('./services/passport');
 
-// Load env variables
-dotenv.config({ path: './config/config.env' });
-
 mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongoURI, { useMongoClient: true });
+mongoose.connect(keys.mongoURI);
 
 const app = express();
 
